@@ -16,11 +16,29 @@ import { DetailsSchema } from './details/details.models';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://Raneem_user2:IjGfmH0AxtA7FvBS@cluster0.rneg70q.mongodb.net/?retryWrites=true&w=majority'),
-    MongooseModule.forFeature([{name:'user',schema:UserSchema}, {name:'transactions',schema:TransactionsSchema}, {name:'details',schema:DetailsSchema},{name:'transfert',schema:TransfertSchema}]),
-
+    MongooseModule.forRoot(
+      'mongodb+srv://brad123:brad123@cluster0.3f2cx.mongodb.net/?retryWrites=true&w=majority',
+    ),
+    MongooseModule.forFeature([
+      { name: 'user', schema: UserSchema },
+      { name: 'transactions', schema: TransactionsSchema },
+      { name: 'details', schema: DetailsSchema },
+      { name: 'transfert', schema: TransfertSchema },
+    ]),
   ],
-  controllers: [UsersController,TransController,DetailsController,TransfertController],
-  providers: [UsersService,TransactionsService,DetailsService,TransfertService],
+  controllers: [
+    UsersController,
+    TransController,
+    DetailsController,
+    TransfertController,
+  ],
+  providers: [
+    UsersService,
+    TransactionsService,
+    DetailsService,
+    TransfertService,
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  /*  */
+}
