@@ -17,6 +17,9 @@ import { DetailsSchema } from './details/details.models';
 @Module({
   imports: [
     MongooseModule.forRoot(
+      //   'mongodb+srv://brad123:brad123@cluster0.3f2cx.mongodb.net/?retryWrites=true&w=majority',
+      // access chaw9i
+      // access ramin
       'mongodb+srv://brad123:brad123@cluster0.3f2cx.mongodb.net/?retryWrites=true&w=majority',
     ),
     MongooseModule.forFeature([

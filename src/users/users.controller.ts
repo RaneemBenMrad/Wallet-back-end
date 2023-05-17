@@ -11,9 +11,10 @@ import { UsersService } from './users.service';
 import { User } from './user.models';
 import { UserUpdateDto } from './userUpdater.dto';
 import { ApiTags, ApiBody, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { CreateUserDto, UpdateUserDto } from './dto/create-user.dto';
 
 @ApiTags('Users API')
-@Controller()
+@Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
     /*  */
@@ -32,7 +33,7 @@ export class UsersController {
   @Put(':id')
   async updateUser(
     @Param('id') id: string,
-    @Body() updateData: UserUpdateDto,
+    @Body() updateData: UpdateUserDto,
   ): Promise<User> {
     return this.usersService.updateUser(id, updateData);
   }
