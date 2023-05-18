@@ -13,14 +13,20 @@ import { UserSchema } from './users/user.models';
 import { TransactionsSchema } from './transactions/transactions.models';
 import { TransfertSchema } from './transfert/transfert.models';
 import { DetailsSchema } from './details/details.models';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     MongooseModule.forRoot(
       //   'mongodb+srv://brad123:brad123@cluster0.3f2cx.mongodb.net/?retryWrites=true&w=majority',
       // access chaw9i
       // access ramin
-      'mongodb+srv://brad123:brad123@cluster0.3f2cx.mongodb.net/?retryWrites=true&w=majority',
+      // put url in .env file
+      process.env.db_url,
     ),
     MongooseModule.forFeature([
       { name: 'user', schema: UserSchema },
