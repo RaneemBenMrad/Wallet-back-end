@@ -13,6 +13,7 @@ import { UserSchema } from './users/user.models';
 import { TransactionsSchema } from './transactions/transactions.models';
 import { TransfertSchema } from './transfert/transfert.models';
 import { DetailsSchema } from './details/details.models';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { DetailsSchema } from './details/details.models';
       { name: 'details', schema: DetailsSchema },
       { name: 'transfert', schema: TransfertSchema },
     ]),
+    AuthModule,
   ],
   controllers: [
     UsersController,
