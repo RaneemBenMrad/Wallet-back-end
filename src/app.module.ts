@@ -14,6 +14,7 @@ import { TransactionsSchema } from './transactions/transactions.models';
 import { TransfertSchema } from './transfert/transfert.models';
 import { DetailsSchema } from './details/details.models';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ConfigModule } from '@nestjs/config';
       { name: 'details', schema: DetailsSchema },
       { name: 'transfert', schema: TransfertSchema },
     ]),
+    AuthModule,
   ],
   controllers: [
     UsersController,
