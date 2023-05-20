@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  ConflictException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './shemas/user.shcema';
@@ -18,7 +22,11 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
+    const userExist = await this.userModel.findOne({ email });
 
+    if (userExist) {
+      throw new ConflictException(' email exist');
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await this.userModel.create({

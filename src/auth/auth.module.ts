@@ -15,9 +15,9 @@ import { UserSchema } from './shemas/user.shcema';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         return {
-          secret: config.get<string>('JWT_SECRET'),
+          secret: 'secretjwt4565',
           signOptions: {
-            expiresIn: config.get<string | number>('JWT_EXPIRES'),
+            expiresIn: '3d',
           },
         };
       },
