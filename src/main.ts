@@ -9,6 +9,10 @@ async function bootstrap() {
     .setTitle('Pepolls API ')
     .setDescription('Pepolls API description')
     .setVersion('1.0')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'Bearer',
+    )
     .build();
   //test
   const document = SwaggerModule.createDocument(app, config);

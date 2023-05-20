@@ -6,14 +6,17 @@ import {
   Post,
   Put,
   Param,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.models';
 import { UserUpdateDto } from './userUpdater.dto';
 import { ApiTags, ApiBody, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateUserDto, UpdateUserDto } from './dto/create-user.dto';
-
+import { AuthGuard } from '@nestjs/passport';
 @ApiTags('Users API')
+@UseGuards(AuthGuard())
+@ApiBearerAuth('Bearer')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
