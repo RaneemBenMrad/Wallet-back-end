@@ -36,4 +36,16 @@ export class SignUpDto {
   @IsString()
   @MinLength(3)
   readonly password: string;
+
+  @ApiProperty({
+    type: String,
+    name: 'nickname',
+    description: 'Auth must  have a  nickname',
+    title: 'nickname',
+    default: 'Tom',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @IsString()
+  readonly nickname: string;
 }

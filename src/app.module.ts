@@ -49,6 +49,7 @@ import { AuthModule } from './auth/auth.module';
     DetailsService,
     TransfertService,
   ],
+  // exports: [UsersService],
 })
 export class AppModule {
   /*  */

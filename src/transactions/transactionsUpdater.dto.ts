@@ -1,3 +1,3 @@
-export class TransactionsUpdateDto{
-    description: string;
+export class TransactionsUpdateDto {
+  description: string;
 }

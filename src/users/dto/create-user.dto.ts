@@ -5,7 +5,7 @@ export class CreateUserDto {
   @ApiProperty({
     type: String,
     name: 'name',
-    description: 'User must  have a  title',
+    description: 'User must  have a  name',
     title: 'name',
     default: 'Tom',
   })
@@ -15,7 +15,7 @@ export class CreateUserDto {
   @ApiProperty({
     type: String,
     name: 'nickname',
-    description: 'User must  have a  title',
+    description: 'User must  have a  nickname',
     title: 'nickname',
     default: 'nickname',
   })
@@ -23,14 +23,14 @@ export class CreateUserDto {
   nickname: string;
 
   @ApiProperty({
-    type: String,
+    type: Number,
     name: 'balance',
-    description: 'User must  have a  title',
+    description: 'User must  have a  balance',
     title: 'balance',
     default: 200,
   })
   @IsString()
-  balance: string;
+  balance: number;
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

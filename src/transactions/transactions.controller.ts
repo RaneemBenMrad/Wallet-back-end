@@ -6,12 +6,17 @@ import {
   Post,
   Put,
   Param,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { TransactionsUpdateDto } from './transactionsUpdater.dto';
 import { Transactions } from './transactions.models';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard())
+@ApiBearerAuth('Bearer')
 @ApiTags('Transaction API')
 @Controller('Transaction')
 export class TransController {
@@ -24,9 +29,13 @@ export class TransController {
     return this.transService.createTransactions(transactionsDto);
   }
 
-  @Get()
+  @Get('all')
   readTransactions() {
     return this.transService.readTransactions();
+  }
+  @Get('byToken')
+  readTransactionByToken(@Req() request: any) {
+    return this.transService.readTransactionByToken(request.user?._id);
   }
 
   @Put(':id')

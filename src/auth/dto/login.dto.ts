@@ -19,7 +19,7 @@ export class LoginDto {
     name: 'password',
     description: 'Auth must  have a  password',
     title: 'password',
-    default: 'Tom@t.com',
+    default: '123',
   })
   @IsNotEmpty()
   @IsString()

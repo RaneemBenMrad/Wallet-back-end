@@ -6,7 +6,10 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
-import { UserSchema } from './shemas/user.shcema';
+
+import { UsersService } from 'src/users/users.service';
+import { TransactionSchema } from 'src/prod/entities/transaction.entity';
+import { UserSchema } from 'src/users/user.models';
 
 @Module({
   imports: [

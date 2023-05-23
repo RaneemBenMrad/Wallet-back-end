@@ -7,6 +7,7 @@ import {
   Put,
   Param,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.models';
@@ -14,6 +15,8 @@ import { UserUpdateDto } from './userUpdater.dto';
 import { ApiTags, ApiBody, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateUserDto, UpdateUserDto } from './dto/create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+
 @ApiTags('Users API')
 @UseGuards(AuthGuard())
 @ApiBearerAuth('Bearer')
@@ -23,16 +26,55 @@ export class UsersController {
     /*  */
   }
 
-  @Post()
-  async createUser(@Body() userDto: User) {
-    return this.usersService.createUser(userDto);
+  @Get('all')
+  async all() {
+    return this.usersService.all();
   }
 
-  @Get()
-  readUser() {
-    return this.usersService.readUser();
+  @Get('byToken')
+  readUser(@Req() request: any) {
+    return this.usersService.readUser(request.user?._id);
   }
 
+  @Post('purchase')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        pecoin: {
+          type: 'number',
+          default: 20,
+        },
+      },
+    },
+  })
+  async purchase(@Req() request: any, @Body() bodyObject): Promise<any> {
+    return this.usersService.purchase(request.user?._id, bodyObject?.pecoin);
+  }
+
+  @Post('transfer')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        pecoin: {
+          type: 'number',
+          default: 20,
+        },
+        to: {
+          type: 'string',
+          default: '646899e370dc94e460bea69f',
+        },
+      },
+    },
+  })
+  async transfer(@Req() request: any, @Body() bodyObject): Promise<any> {
+    return this.usersService.transfer(
+      request.user?._id,
+      bodyObject?.pecoin,
+      bodyObject?.to,
+    );
+  }
   @Put(':id')
   async updateUser(
     @Param('id') id: string,

@@ -6,6 +6,12 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
+  @Prop({ unique: [true, 'Duplicate email entered'] })
+  email: string;
+
+  @Prop()
+  password: string;
+
   @ApiProperty({
     type: String,
     name: 'name',
@@ -29,7 +35,7 @@ export class User {
   nickname: string;
 
   @ApiProperty({
-    type: String,
+    type: Number,
     name: 'balance',
     description: 'User must  have a  balance',
     title: 'balance',
@@ -37,7 +43,7 @@ export class User {
   })
   @IsString()
   @Prop()
-  balance: string;
+  balance: number;
 
   @Prop()
   cardNumber: string;
