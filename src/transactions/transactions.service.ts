@@ -22,6 +22,8 @@ export class TransactionsService {
       .populate('owner')
       .populate('sender')
       .populate('receiver')
+      .populate('display')
+      .sort({ createdAt: -1 })
       .then((user) => {
         return user;
       })
@@ -32,7 +34,9 @@ export class TransactionsService {
       .find({ owner: id })
       .populate('owner')
       .populate('sender')
-      .populate('receiver');
+      .populate('receiver')
+      .populate('display')
+      .sort({ createdAt: -1 });
   }
   // upadting the data
   async updateTransactions(id, data): Promise<Transactions> {

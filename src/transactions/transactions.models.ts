@@ -68,6 +68,8 @@ export class Transactions {
   })
   @Prop({ type: Number })
   amount: number;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  display: string;
 }
 
 export const TransactionsSchema = SchemaFactory.createForClass(Transactions);

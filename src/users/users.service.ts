@@ -42,12 +42,13 @@ export class UsersService {
       { $inc: { balance: pecoin } },
       { new: true },
     );
-    this.transactionsService.createTransactions({
+    return await this.transactionsService.createTransactions({
       amount: pecoin,
       owner: id,
       receiver: id,
       sender: '646bec86fb681e5e92741ea6',
       type: 'Purchase',
+      display: '646bec86fb681e5e92741ea6',
     });
   }
 
@@ -67,6 +68,7 @@ export class UsersService {
         receiver: to,
         sender: me,
         type: 'Sent',
+        display: to,
       });
 
       //receive for receiver
@@ -79,9 +81,10 @@ export class UsersService {
       this.transactionsService.createTransactions({
         amount: pecoin,
         owner: to,
-        receiver: me,
-        sender: to,
+        receiver: to,
+        sender: me,
         type: 'Receive',
+        display: me,
       });
       return sent;
     } else {
